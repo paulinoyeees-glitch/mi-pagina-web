@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portafolio profesional de Pablo Alejandro Isidro Capia, Contador General.">
+  <meta name="theme-color" content="#102b4e">
+  <title>Pablo Alejandro Isidro Capia | Contador General</title>
+
+  <style>
+    /* =========================
+       ESTILOS GENERALES
+       ========================= */
+    :root {
+      --azul: #153e68;
+      --azul-oscuro: #102b4e;
+      --azul-claro: #eaf2fb;
+      --celeste: #6da8e0;
+      --texto: #243449;
+      --suave: #64748b;
+      --blanco: #ffffff;
+      --fondo: #f6f8fc;
+      --borde: #dce5ef;
+      --sombra: 0 18px 45px rgba(16, 43, 78, .10);
+      --radio: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 85px; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--texto);
+      background: var(--fondo);
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+    .contenedor { width: min(1100px, 90%); margin: 0 auto; }
+    .seccion { padding: 88px 0; }
+    .titulo-seccion { margin: 0 0 12px; color: var(--azul-oscuro); font-size: clamp(1.8rem, 4vw, 2.5rem); line-height: 1.2; }
+    .subtitulo { margin: 0 0 34px; color: var(--suave); max-width: 680px; }
+    .etiqueta { color: var(--celeste); font-size: .78rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    .boton {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      border: 0; border-radius: 999px; padding: 13px 22px; cursor: pointer;
+      background: var(--celeste); color: var(--azul-oscuro); font-weight: 800;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .boton:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(109,168,224,.28); background: #8bbbe9; }
+    .boton-secundario { background: transparent; color: white; border: 1px solid rgba(255,255,255,.55); }
+    .boton-secundario:hover { background: rgba(255,255,255,.12); }
+
+    /* =========================
+       CABECERA Y MENÚ
+       ========================= */
+    .cabecera {
+      position: sticky; top: 0; z-index: 1000; background: rgba(16,43,78,.96);
+      backdrop-filter: blur(12px); box-shadow: 0 4px 20px rgba(0,0,0,.08);
+    }
+    .barra { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .marca { color: white; font-weight: 850; letter-spacing: .02em; }
+    .marca span { color: var(--celeste); }
+    .navegacion { display: flex; align-items: center; gap: 24px; }
+    .navegacion a { color: #eaf2fb; font-size: .92rem; font-weight: 650; transition: color .2s; }
+    .navegacion a:hover { color: #8bbbe9; }
+    .menu-boton {
+      display: none; border: 1px solid rgba(255,255,255,.35); background: transparent;
+      color: white; border-radius: 10px; padding: 8px 12px; cursor: pointer; font-size: 1.2rem;
+    }
+
+    /* =========================
+       INICIO
+       ========================= */
+    .inicio {
+      min-height: 650px; display: grid; align-items: center; color: white;
+      background: radial-gradient(circle at 85% 20%, rgba(109,168,224,.28), transparent 28%),
+                  linear-gradient(125deg, #102b4e, #1c4d7d);
+      overflow: hidden;
+    }
+    .inicio-contenido { display: grid; grid-template-columns: 1.35fr .65fr; align-items: center; gap: 50px; padding: 80px 0; }
+    .inicio h1 { margin: 12px 0; font-size: clamp(2.5rem, 6vw, 4.7rem); line-height: 1.06; letter-spacing: -.045em; }
+    .inicio h1 span { color: #8bbbe9; }
+    .inicio p { max-width: 620px; color: #dce9f7; font-size: 1.12rem; }
+    .acciones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .foto-marco {
+      width: min(290px, 75vw); aspect-ratio: 1; margin: auto; border-radius: 50%;
+      display: grid; place-items: center; border: 9px solid rgba(255,255,255,.2);
+      background: linear-gradient(145deg, #d9edff, #78a9d8); box-shadow: 0 25px 70px rgba(0,0,0,.25);
+    }
+    .foto-iniciales { width: 100%; height: 100%; border-radius: 50%; display: grid; place-items: center; color: var(--azul-oscuro); font-size: 4.5rem; font-weight: 900; }
+    .nota-foto { text-align: center; color: #dce9f7; font-size: .8rem; margin-top: 12px; }
+
+    /* =========================
+       SOBRE MÍ Y TARJETAS
+       ========================= */
+    .sobre-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 35px; align-items: start; }
+    .panel, .tarjeta, .contacto-formulario {
+      background: white; border: 1px solid var(--borde); border-radius: var(--radio); box-shadow: var(--sombra);
+    }
+    .panel { padding: 30px; }
+    .dato-rapido { display: grid; gap: 14px; }
+    .dato { padding: 17px; background: var(--azul-claro); border-radius: 14px; }
+    .dato strong { display: block; color: var(--azul); }
+    .dato span { color: var(--suave); font-size: .92rem; overflow-wrap: anywhere; }
+
+    /* =========================
+       EXPERIENCIA Y FORMACIÓN
+       ========================= */
+    .fondo-blanco { background: white; }
+    .rejilla { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; }
+    .tarjeta { padding: 25px; box-shadow: none; }
+    .tarjeta h3 { margin: 7px 0; color: var(--azul); }
+    .tarjeta p { margin: 7px 0; color: var(--suave); }
+    .fecha { display: inline-block; color: var(--azul); background: var(--azul-claro); border-radius: 999px; padding: 4px 11px; font-size: .82rem; font-weight: 750; }
+    .aviso { border-left: 4px solid #e4a23a; background: #fff8e9; padding: 12px 15px; border-radius: 8px; color: #75521b; font-size: .9rem; margin-top: 20px; }
+
+    /* =========================
+       HABILIDADES Y ÁREAS
+       ========================= */
+    .habilidades { display: flex; flex-wrap: wrap; gap: 12px; }
+    .habilidad { background: var(--azul-claro); color: var(--azul); border: 1px solid #d5e5f6; border-radius: 999px; padding: 10px 16px; font-weight: 700; }
+    .servicio-icono { font-size: 1.7rem; }
+
+    /* =========================
+       CONTACTO
+       ========================= */
+    .contacto-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 28px; align-items: start; }
+    .contacto-formulario { padding: 28px; }
+    .campo { margin-bottom: 17px; }
+    .campo label { display: block; margin-bottom: 7px; color: var(--azul-oscuro); font-weight: 750; }
+    .campo input, .campo textarea {
+      width: 100%; border: 1px solid var(--borde); border-radius: 11px; padding: 13px 14px;
+      background: #fbfdff; color: var(--texto); outline: none; transition: border .2s, box-shadow .2s;
+    }
+    .campo input:focus, .campo textarea:focus { border-color: var(--celeste); box-shadow: 0 0 0 3px rgba(109,168,224,.18); }
+    .campo textarea { min-height: 145px; resize: vertical; }
+    .estado { min-height: 26px; margin: 12px 0 0; font-weight: 700; }
+    .estado.exito { color: #16734a; }
+    .estado.error { color: #b42318; }
+    .pie { background: var(--azul-oscuro); color: #dce9f7; padding: 25px 0; text-align: center; font-size: .9rem; }
+
+    /* Animación: JavaScript agrega la clase visible al entrar en pantalla */
+    .revelar { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+    .revelar.visible { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      .revelar { opacity: 1; transform: none; }
+    }
+
+    /* =========================
+       DISEÑO PARA CELULARES
+       ========================= */
+    @media (max-width: 780px) {
+      .menu-boton { display: block; }
+      .navegacion {
+        display: none; position: absolute; top: 72px; left: 0; right: 0;
+        padding: 18px 5% 24px; background: var(--azul-oscuro);
+        flex-direction: column; align-items: flex-start; gap: 17px;
+      }
+      .navegacion.abierto { display: flex; }
+      .inicio-contenido, .sobre-grid, .contacto-grid { grid-template-columns: 1fr; }
+      .inicio-contenido { text-align: center; gap: 35px; }
+      .inicio p { margin-left: auto; margin-right: auto; }
+      .acciones { justify-content: center; }
+      .foto-marco { grid-row: 1; width: 210px; }
+      .rejilla { grid-template-columns: 1fr; }
+      .seccion { padding: 65px 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- CABECERA: el botón abre y cierra el menú en pantallas pequeñas -->
+  <header class="cabecera">
+    <div class="contenedor barra">
+      <a class="marca" href="#inicio">Pablo <span>Isidro</span></a>
+      <button class="menu-boton" id="menuBoton" aria-label="Abrir menú" aria-expanded="false" aria-controls="navegacion">☰</button>
+      <nav class="navegacion" id="navegacion" aria-label="Menú principal">
+        <a href="#inicio">Inicio</a>
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#experiencia">Experiencia</a>
+        <a href="#habilidades">Habilidades</a>
+        <a href="#servicios">Áreas</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- INICIO: se usan las iniciales porque el CV adjunto no contiene una foto personal -->
+    <section class="inicio" id="inicio">
+      <div class="contenedor inicio-contenido">
+        <div class="revelar">
+          <span class="etiqueta">Portafolio profesional</span>
+          <h1>Pablo Alejandro<br><span>Isidro Capia</span></h1>
+          <p>Contador General. Persona confiable y honesta, con disposición para trabajar en equipo, resolver problemas y mantener una actitud positiva ante los desafíos.</p>
+          <div class="acciones">
+            <a class="boton" href="#contacto">Contáctame <span aria-hidden="true">→</span></a>
+            <a class="boton boton-secundario" href="#sobre-mi">Conóceme</a>
+          </div>
+        </div>
+        <div class="revelar">
+          <div class="foto-marco" role="img" aria-label="Espacio reservado para fotografía personal">
+            <div class="foto-iniciales">PA</div>
+          </div>
+          <p class="nota-foto">Espacio para agregar tu fotografía personal</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE MÍ: texto basado en el apartado "Acerca de mí" del CV -->
+    <section class="seccion" id="sobre-mi">
+      <div class="contenedor sobre-grid">
+        <div class="revelar">
+          <span class="etiqueta">Presentación</span>
+          <h2 class="titulo-seccion">Sobre mí</h2>
+          <div class="panel">
+            <p>Soy una persona confiable y honesta, con capacidad para trabajar en equipo, aportar ideas y resolver problemas. Me gusta realizar deportes o actividades para socializar y conocer a mis compañeros del área laboral.</p>
+            <p>Busco contribuir con mis capacidades de aprendizaje adquiridas durante mis años de estudio, aportando compromiso, aprendizaje continuo y una actitud positiva ante los desafíos.</p>
+          </div>
+        </div>
+        <div class="dato-rapido revelar">
+          <div class="dato"><strong>Profesión</strong><span>Contador General</span></div>
+          <div class="dato"><strong>Teléfono</strong><span><a href="tel:+59173446768">73446768</a></span></div>
+          <div class="dato"><strong>Correo electrónico</strong><span><a href="mailto:paulitoyeees@gmail.com">paulitoyeees@gmail.com</a></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCIA: se conservan los cargos y la empresa que aparecen en el CV -->
+    <section class="seccion fondo-blanco" id="experiencia">
+      <div class="contenedor">
+        <span class="etiqueta">Trayectoria</span>
+        <h2 class="titulo-seccion">Experiencia y formación</h2>
+        <p class="subtitulo">Experiencia laboral y estudios indicados en mi hoja de vida.</p>
+        <div class="rejilla">
+          <article class="tarjeta revelar">
+            <span class="fecha">2010–2030 · Según CV</span>
+            <h3>Auxiliar Administrativo</h3>
+            <p>Empresa Borcelle</p>
+          </article>
+          <article class="tarjeta revelar">
+            <span class="fecha">2010–2030 · Según CV</span>
+            <h3>Administración Contable</h3>
+            <p>Empresa Borcelle</p>
+          </article>
+          <article class="tarjeta revelar">
+            <span class="fecha">2010–2030 · Según CV</span>
+            <h3>Gerente del Área de Administración</h3>
+            <p>Empresa Borcelle</p>
+          </article>
+          <article class="tarjeta revelar">
+            <span class="fecha">2010–2030 · Según CV</span>
+            <h3>Jefe en Administración</h3>
+            <p>Empresa Borcelle</p>
+          </article>
+        </div>
+        <div class="aviso revelar"><strong>Para revisar:</strong> tu CV indica el período 2010–2030 para los cuatro cargos. Lo conservé tal como aparece, pero conviene confirmar las fechas antes de publicar. No incluí las descripciones en latín del documento porque parecen texto de plantilla y no describen funciones laborales.</div>
+
+        <h3 style="color:var(--azul); margin:42px 0 18px;">Formación académica</h3>
+        <div class="rejilla">
+          <article class="tarjeta revelar">
+            <h3>Bachiller · 2021</h3>
+            <p>Unidad Educativa Humanística German Busch.</p>
+          </article>
+          <article class="tarjeta revelar">
+            <h3>Auxiliar contable</h3>
+            <p>Centro de Educación Alternativa “MCAL. de Montenegro”.</p>
+          </article>
+          <article class="tarjeta revelar">
+            <h3>Técnico medio en Contabilidad General</h3>
+            <p>Centro de Educación Alternativa “MCAL. de Montenegro”.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- HABILIDADES: nombres adaptados solo en ortografía, sin agregar competencias -->
+    <section class="seccion" id="habilidades">
+      <div class="contenedor revelar">
+        <span class="etiqueta">Fortalezas</span>
+        <h2 class="titulo-seccion">Habilidades</h2>
+        <p class="subtitulo">Competencias personales mencionadas en mi hoja de vida.</p>
+        <div class="habilidades">
+          <span class="habilidad">Honestidad</span>
+          <span class="habilidad">Resolución de problemas</span>
+          <span class="habilidad">Aporte de ideas positivas</span>
+          <span class="habilidad">Información al día</span>
+          <span class="habilidad">Deportes</span>
+          <span class="habilidad">Trabajo en equipo</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ÁREAS: se presentan como áreas relacionadas con los cargos del CV, no como servicios ya ofrecidos -->
+    <section class="seccion fondo-blanco" id="servicios">
+      <div class="contenedor">
+        <span class="etiqueta">Perfil profesional</span>
+        <h2 class="titulo-seccion">Áreas de interés profesional</h2>
+        <p class="subtitulo">Áreas relacionadas con los cargos y la formación que aparecen en mi hoja de vida.</p>
+        <div class="rejilla">
+          <article class="tarjeta revelar">
+            <div class="servicio-icono" aria-hidden="true">▤</div>
+            <h3>Administración contable</h3>
+            <p>Área vinculada con la formación en Contabilidad General y el cargo de Administración Contable indicado en el CV.</p>
+          </article>
+          <article class="tarjeta revelar">
+            <div class="servicio-icono" aria-hidden="true">▣</div>
+            <h3>Apoyo administrativo</h3>
+            <p>Área relacionada con los cargos de Auxiliar Administrativo y Jefe en Administración indicados en el CV.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO: el formulario envía los datos a Google Apps Script -->
+    <section class="seccion" id="contacto">
+      <div class="contenedor">
+        <span class="etiqueta">Hablemos</span>
+        <h2 class="titulo-seccion">Contacto</h2>
+        <p class="subtitulo">Puedes escribirme mediante el formulario o utilizar mis datos de contacto.</p>
+        <div class="contacto-grid">
+          <div class="dato-rapido revelar">
+            <div class="dato"><strong>Teléfono</strong><span><a href="tel:+59173446768">73446768</a></span></div>
+            <div class="dato"><strong>Correo</strong><span><a href="mailto:paulitoyeees@gmail.com">paulitoyeees@gmail.com</a></span></div>
+          </div>
+          <form class="contacto-formulario revelar" id="formularioContacto">
+            <div class="campo">
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" autocomplete="name" maxlength="100" required placeholder="Tu nombre">
+            </div>
+            <div class="campo">
+              <label for="correo">Correo electrónico</label>
+              <input type="email" id="correo" name="correo" autocomplete="email" maxlength="150" required placeholder="tunombre@correo.com">
+            </div>
+            <div class="campo">
+              <label for="mensaje">Mensaje</label>
+              <textarea id="mensaje" name="mensaje" maxlength="3000" required placeholder="Escribe tu mensaje..."></textarea>
+            </div>
+            <button class="boton" id="botonEnviar" type="submit">Enviar mensaje</button>
+            <p class="estado" id="estadoFormulario" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">© <span id="anio"></span> Pablo Alejandro Isidro Capia · Portafolio personal</div>
+  </footer>
+
+  <script>
+    // ==========================================
+    // 1. MENÚ RESPONSIVE: abre y cierra en celular
+    // ==========================================
+    const menuBoton = document.getElementById("menuBoton");
+    const navegacion = document.getElementById("navegacion");
+
+    function cerrarMenu() {
+      navegacion.classList.remove("abierto");
+      menuBoton.setAttribute("aria-expanded", "false");
+      menuBoton.setAttribute("aria-label", "Abrir menú");
+      menuBoton.textContent = "☰";
+    }
+
+    menuBoton.addEventListener("click", () => {
+      const estaAbierto = navegacion.classList.toggle("abierto");
+      menuBoton.setAttribute("aria-expanded", String(estaAbierto));
+      menuBoton.setAttribute("aria-label", estaAbierto ? "Cerrar menú" : "Abrir menú");
+      menuBoton.textContent = estaAbierto ? "✕" : "☰";
+    });
+
+    // Al elegir una sección, el menú móvil se cierra automáticamente.
+    navegacion.querySelectorAll("a").forEach(enlace => {
+      enlace.addEventListener("click", cerrarMenu);
+    });
+
+    // ==========================================
+    // 2. ANIMACIONES SUAVES AL DESPLAZARSE
+    // ==========================================
+    const elementos = document.querySelectorAll(".revelar");
+
+    if ("IntersectionObserver" in window) {
+      const observador = new IntersectionObserver((entradas, observer) => {
+        entradas.forEach(entrada => {
+          if (entrada.isIntersecting) {
+            entrada.target.classList.add("visible");
+            observer.unobserve(entrada.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      elementos.forEach(elemento => observador.observe(elemento));
+    } else {
+      // Alternativa para navegadores antiguos.
+      elementos.forEach(elemento => elemento.classList.add("visible"));
+    }
+
+    // Año automático en el pie de página.
+    document.getElementById("anio").textContent = new Date().getFullYear();
+
+    // ==========================================
+    // 3. FORMULARIO: validación y envío a Google
+    // ==========================================
+    // PASO IMPORTANTE: reemplaza esta dirección por la URL de tu Aplicación web.
+    const URL_APPS_SCRIPT = "PEGA_AQUI_TU_URL_DE_APPS_SCRIPT";
+
+    const formulario = document.getElementById("formularioContacto");
+    const estado = document.getElementById("estadoFormulario");
+    const botonEnviar = document.getElementById("botonEnviar");
+
+    formulario.addEventListener("submit", async (evento) => {
+      evento.preventDefault(); // Evita que el navegador recargue la página.
+      estado.textContent = "";
+      estado.className = "estado";
+
+      // Validación nativa del navegador y validación adicional del correo.
+      if (!formulario.checkValidity()) {
+        formulario.reportValidity();
+        return;
+      }
+
+      const datos = new FormData(formulario);
+      const correo = String(datos.get("correo")).trim();
+      const patronCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!patronCorreo.test(correo)) {
+        estado.textContent = "Escribe un correo electrónico válido.";
+        estado.classList.add("error");
+        return;
+      }
+
+      if (URL_APPS_SCRIPT === "PEGA_AQUI_TU_URL_DE_APPS_SCRIPT") {
+        estado.textContent = "Falta configurar la URL de Google Apps Script en el código.";
+        estado.classList.add("error");
+        return;
+      }
+
+      // Se envían datos simples como formulario para evitar una solicitud CORS de preflight.
+      const cuerpo = new URLSearchParams({
+        nombre: String(datos.get("nombre")).trim(),
+        correo: correo,
+        mensaje: String(datos.get("mensaje")).trim()
+      });
+
+      if (!cuerpo.get("nombre") || !cuerpo.get("mensaje")) {
+        estado.textContent = "Completa todos los campos.";
+        estado.classList.add("error");
+        return;
+      }
+
+      botonEnviar.disabled = true;
+      botonEnviar.textContent = "Enviando...";
+
+      try {
+        // Apps Script puede responder con una respuesta opaca por las reglas CORS del navegador.
+        // Por eso este modo confirma que el navegador pudo despachar la solicitud, no verifica
+        // la escritura en la hoja. Prueba primero con un mensaje real y revisa la hoja.
+        await fetch(URL_APPS_SCRIPT, {
+          method: "POST",
+          mode: "no-cors",
+          body: cuerpo
+        });
+
+        estado.textContent = "¡Mensaje enviado!";
+        estado.classList.add("exito");
+        formulario.reset();
+      } catch (error) {
+        console.error("Error al enviar el formulario:", error);
+        estado.textContent = "No se pudo enviar. Revisa tu conexión e inténtalo otra vez.";
+        estado.classList.add("error");
+      } finally {
+        botonEnviar.disabled = false;
+        botonEnviar.textContent = "Enviar mensaje";
+      }
+    });
+  </script>
+</body>
+</html>
